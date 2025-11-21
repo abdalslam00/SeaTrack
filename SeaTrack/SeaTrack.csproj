@@ -1,0 +1,559 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{5C3226F6-7F25-4D04-8C4F-C0F7018517F6}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>SeaTrack</RootNamespace>
+    <AssemblyName>SeaTrack</AssemblyName>
+    <TargetFrameworkVersion>v4.8</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort />
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PresentationCore" />
+    <Reference Include="PresentationFramework" />
+    <Reference Include="QRCoder, Version=1.7.0.0, Culture=neutral, PublicKeyToken=c4ed5b9ae8358a28, processorArchitecture=MSIL">
+      <HintPath>..\packages\QRCoder.1.7.0\lib\net40\QRCoder.dll</HintPath>
+      <Private>True</Private>
+    </Reference>
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Database\script.sql" />
+    <Content Include="Default.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Login.aspx" />
+    <Content Include="obj\Debug\SeaTrack.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Debug\SeaTrack.dll" />
+    <Content Include="obj\Debug\SeaTrack.pdb" />
+    <Content Include="obj\Release\Package\PackageTmp\App_Data\SeaTrack.mdf" />
+    <Content Include="obj\Release\Package\PackageTmp\App_Data\SeaTrack_log.ldf">
+      <DependentUpon>SeaTrack.mdf</DependentUpon>
+    </Content>
+    <Content Include="obj\Release\Package\PackageTmp\assets\css\style.css" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\ICON\container-storage-svgrepo-com.svg" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\admin-app.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\api\api-client.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\api\auth-api.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\api\bookings-api.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\api\containers-api.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\api\invoices-api.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\api\other-apis.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\api\shipments-api.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\api\shipments-enhanced-api.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\api\trips-api.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\api\users-api.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\api\warehouse-api.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\customer-app.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\main.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\utils\constants.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\utils\formatters.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\utils\storage.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\utils\validators.js" />
+    <Content Include="obj\Release\Package\PackageTmp\assets\js\warehouse-app.js" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Antlr3.Runtime.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Antlr3.Runtime.pdb" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.Bcl.AsyncInterfaces.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.Bcl.TimeProvider.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.Extensions.Logging.Abstractions.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.IdentityModel.Abstractions.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.IdentityModel.JsonWebTokens.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.IdentityModel.Logging.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.IdentityModel.Tokens.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Microsoft.Web.Infrastructure.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\Newtonsoft.Json.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\QRCoder.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\csc.exe" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\csi.exe" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\Microsoft.Build.Tasks.CodeAnalysis.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\Microsoft.CodeAnalysis.CSharp.Scripting.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\Microsoft.CodeAnalysis.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\Microsoft.CodeAnalysis.Scripting.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\Microsoft.CodeAnalysis.VisualBasic.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\Microsoft.DiaSymReader.Native.amd64.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\Microsoft.DiaSymReader.Native.x86.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\Microsoft.Win32.Primitives.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.AppContext.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Collections.Immutable.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Console.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Diagnostics.DiagnosticSource.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Diagnostics.FileVersionInfo.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Diagnostics.StackTrace.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Globalization.Calendars.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.IO.Compression.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.IO.Compression.ZipFile.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.IO.FileSystem.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.IO.FileSystem.Primitives.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Net.Http.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Net.Sockets.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Reflection.Metadata.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Runtime.InteropServices.RuntimeInformation.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Security.Cryptography.Algorithms.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Security.Cryptography.Encoding.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Security.Cryptography.Primitives.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Security.Cryptography.X509Certificates.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Text.Encoding.CodePages.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.ValueTuple.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Xml.ReaderWriter.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Xml.XmlDocument.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Xml.XPath.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\System.Xml.XPath.XDocument.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\vbc.exe" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\VBCSCompiler.exe" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\SeaTrack.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\SeaTrack.pdb" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Buffers.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Diagnostics.DiagnosticSource.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.IdentityModel.Tokens.Jwt.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Memory.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Numerics.Vectors.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Runtime.CompilerServices.Unsafe.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Text.Encodings.Web.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Text.Json.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Threading.Tasks.Extensions.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.ValueTuple.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\System.Web.Optimization.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\WebGrease.dll" />
+    <Content Include="obj\Release\Package\PackageTmp\Global.asax" />
+    <Content Include="obj\Release\Package\PackageTmp\index.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\login.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\admin\containers.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\admin\dashboard.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\admin\payments.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\admin\ports.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\admin\reports.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\admin\ships.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\admin\trips.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\admin\users.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\customer\booking.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\customer\dashboard.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\customer\invoices.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\customer\my-bookings.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\customer\my-shipments.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\customer\shipment.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\warehouse\dashboard.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\warehouse\process-booking.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\warehouse\scan-qr.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\Pages\warehouse\trips.aspx" />
+    <Content Include="obj\Release\Package\PackageTmp\register.aspx" />
+    <Content Include="obj\Release\SeaTrack.csproj.FileListAbsolute.txt" />
+    <Content Include="obj\Release\SeaTrack.dll" />
+    <Content Include="obj\Release\SeaTrack.pdb" />
+    <Content Include="obj\Release\_WPPLastBuildInfo.txt" />
+    <Content Include="Pages\admin\Containers.aspx" />
+    <Content Include="Pages\admin\Dashboard.aspx" />
+    <Content Include="Pages\admin\Payments.aspx" />
+    <Content Include="Pages\admin\Ports.aspx" />
+    <Content Include="Pages\admin\Reports.aspx" />
+    <Content Include="Pages\admin\Ships.aspx" />
+    <Content Include="Pages\admin\Trips.aspx" />
+    <Content Include="Pages\admin\Users.aspx" />
+    <Content Include="Pages\admin\WebForm1.aspx" />
+    <Content Include="Pages\customer\Booking.aspx" />
+    <Content Include="Pages\customer\CreateShipment.aspx" />
+    <Content Include="Pages\customer\Dashboard.aspx" />
+    <Content Include="Pages\customer\Invoices.aspx" />
+    <Content Include="Pages\customer\MyBookings.aspx" />
+    <Content Include="Pages\customer\MyShipments.aspx" />
+    <Content Include="Pages\warehouse\Dashboard.aspx" />
+    <Content Include="Pages\warehouse\ProcessBooking.aspx" />
+    <Content Include="Pages\warehouse\ScanQR.aspx" />
+    <Content Include="Pages\warehouse\Trips.aspx" />
+    <Content Include="Profile.aspx" />
+    <Content Include="Properties\PublishProfiles\FolderProfile.pubxml.user" />
+    <Content Include="Register.aspx" />
+    <Content Include="Scripts\custom.js" />
+    <Content Include="Styles\style.css" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BLL\AuthenticationService.cs" />
+    <Compile Include="BLL\InvoiceService.cs" />
+    <Compile Include="BLL\NotificationService.cs" />
+    <Compile Include="BLL\PaymentService.cs" />
+    <Compile Include="BLL\QRCodeService.cs" />
+    <Compile Include="BLL\ReportService.cs" />
+    <Compile Include="BLL\WeightCalculationService.cs" />
+    <Compile Include="DAL\BookingRepository.cs" />
+    <Compile Include="DAL\ContainerRepository.cs" />
+    <Compile Include="DAL\DatabaseHelper.cs" />
+    <Compile Include="DAL\InvoiceRepository.cs" />
+    <Compile Include="DAL\PaymentRepository.cs" />
+    <Compile Include="DAL\PortRepository.cs" />
+    <Compile Include="DAL\ShipmentRepository.cs" />
+    <Compile Include="DAL\ShipRepository.cs" />
+    <Compile Include="DAL\TripRepository.cs" />
+    <Compile Include="DAL\UserRepository.cs" />
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.designer.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Login.aspx.designer.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Include="obj\Release\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Include="Pages\admin\Containers.aspx.cs">
+      <DependentUpon>Containers.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\admin\Containers.aspx.designer.cs">
+      <DependentUpon>Containers.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\admin\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\admin\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\admin\Payments.aspx.cs">
+      <DependentUpon>Payments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\admin\Payments.aspx.designer.cs">
+      <DependentUpon>Payments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\admin\Ports.aspx.cs">
+      <DependentUpon>Ports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\admin\Ports.aspx.designer.cs">
+      <DependentUpon>Ports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\admin\Reports.aspx.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\admin\Reports.aspx.designer.cs">
+      <DependentUpon>Reports.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\admin\Ships.aspx.cs">
+      <DependentUpon>Ships.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\admin\Ships.aspx.designer.cs">
+      <DependentUpon>Ships.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\admin\Trips.aspx.cs">
+      <DependentUpon>Trips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\admin\Trips.aspx.designer.cs">
+      <DependentUpon>Trips.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\admin\Users.aspx.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\admin\Users.aspx.designer.cs">
+      <DependentUpon>Users.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\admin\WebForm1.aspx.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\admin\WebForm1.aspx.designer.cs">
+      <DependentUpon>WebForm1.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\customer\Booking.aspx.cs">
+      <DependentUpon>Booking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\customer\Booking.aspx.designer.cs">
+      <DependentUpon>Booking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\customer\CreateShipment.aspx.cs">
+      <DependentUpon>CreateShipment.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\customer\CreateShipment.aspx.designer.cs">
+      <DependentUpon>CreateShipment.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\customer\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\customer\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\customer\Invoices.aspx.cs">
+      <DependentUpon>Invoices.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\customer\Invoices.aspx.designer.cs">
+      <DependentUpon>Invoices.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\customer\MyBookings.aspx.cs">
+      <DependentUpon>MyBookings.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\customer\MyBookings.aspx.designer.cs">
+      <DependentUpon>MyBookings.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\customer\MyShipments.aspx.cs">
+      <DependentUpon>MyShipments.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\customer\MyShipments.aspx.designer.cs">
+      <DependentUpon>MyShipments.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\warehouse\Dashboard.aspx.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\warehouse\Dashboard.aspx.designer.cs">
+      <DependentUpon>Dashboard.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\warehouse\ProcessBooking.aspx.cs">
+      <DependentUpon>ProcessBooking.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\warehouse\ProcessBooking.aspx.designer.cs">
+      <DependentUpon>ProcessBooking.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\warehouse\ScanQR.aspx.cs">
+      <DependentUpon>ScanQR.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\warehouse\ScanQR.aspx.designer.cs">
+      <DependentUpon>ScanQR.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Pages\warehouse\Trips.aspx.cs">
+      <DependentUpon>Trips.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\warehouse\Trips.aspx.designer.cs">
+      <DependentUpon>Trips.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Profile.aspx.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Profile.aspx.designer.cs">
+      <DependentUpon>Profile.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Register.aspx.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Register.aspx.designer.cs">
+      <DependentUpon>Register.aspx</DependentUpon>
+    </Compile>
+    <Compile Include="Site.Master.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Site.Master.designer.cs">
+      <DependentUpon>Site.Master</DependentUpon>
+    </Compile>
+    <Compile Include="Utilities\Constants.cs" />
+    <Compile Include="Utilities\EncryptionHelper.cs" />
+    <Compile Include="Utilities\LogHelper.cs" />
+    <Compile Include="Utilities\SessionManager.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include=".vs\SeaTrack.csproj.dtbcache.json" />
+    <Content Include="Logs\Activity_14470530.log" />
+    <Content Include="Logs\Activity_20251114.log" />
+    <Content Include="Logs\Activity_20251115.log" />
+    <Content Include="Logs\Activity_20251117.log" />
+    <Content Include="Logs\Activity_20251118.log" />
+    <Content Include="Logs\Error_14470530.log" />
+    <Content Include="Logs\Error_20251118.log" />
+    <Content Include="Logs\Info_20251118.log" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferences.cache" />
+    <Content Include="obj\Debug\DesignTimeResolveAssemblyReferencesInput.cache" />
+    <Content Include="obj\Debug\SeaTrack.csproj.AssemblyReference.cache" />
+    <Content Include="obj\Debug\SeaTrack.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Debug\SeaTrack.csproj.Up2Date" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Admin\Containers\CreateContainer.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Admin\Containers\GetAllContainers.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Admin\Containers\GetContainersStats.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Admin\Ships\GetAllShips.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Admin\Users\GetAllUsers.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Admin\Users\GetUsersStats.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Admin\Users\UpdateUser.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Auth\CheckSession.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Auth\Login.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Auth\Logout.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Auth\register.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Bookings\CancelBooking.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Bookings\GetMyBookings.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Bookings\GetPendingBookings.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Bookings\ProcessBooking.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Bookings\SubmitBooking.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Bookings\SubmitBooking_Enhanced.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Customer\Bookings\CancelBooking.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Customer\Bookings\GetMyBookings.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Customer\Bookings\SubmitBooking.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Customer\Shipments\GetMyShipments.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Customer\Shipments\GetShipmentHistory.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Invoices\CreateInvoice.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Invoices\GetMyInvoices.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Invoices\RecordPayment.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Other\GetContainers.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Other\GetDashboardStats.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Other\GetNotifications.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Other\GetPorts.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Other\GetShips.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Other\MarkNotificationRead.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Public\TrackShipmentByQR.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Shipments\ConfirmDelivery.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Shipments\CreateShipment.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Shipments\GetMyShipments.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Shipments\GetShipmentByQR.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Shipments\UpdateShipmentStatus.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Trips\CreateTrip.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Trips\GetAllTrips.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Trips\GetAvailableContainers.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Trips\UpdateTripStatus.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Warehouse\ProcessBooking.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\API\Warehouse\ScanQRCode.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\BaseApiHandler.ashx" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\csc.exe.config" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\csc.rsp" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\csi.exe.config" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\csi.rsp" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\Microsoft.CSharp.Core.targets" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\Microsoft.Managed.Core.targets" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\Microsoft.VisualBasic.Core.targets" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\vbc.exe.config" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\vbc.rsp" />
+    <Content Include="obj\Release\Package\PackageTmp\bin\roslyn\VBCSCompiler.exe.config" />
+    <Content Include="obj\Release\Package\PackageTmp\Web.config" />
+    <Content Include="obj\Release\SeaTrack.csproj.AssemblyReference.cache" />
+    <Content Include="obj\Release\SeaTrack.csproj.CoreCompileInputs.cache" />
+    <Content Include="obj\Release\TransformWebConfig\assist\Web.config" />
+    <Content Include="obj\Release\TransformWebConfig\original\Web.config" />
+    <Content Include="obj\Release\TransformWebConfig\transformed\Web.config" />
+    <None Include="packages.config" />
+    <Content Include="Pages.rar" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <Content Include="Site.Master" />
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Code\" />
+    <Folder Include="bb\" />
+    <Folder Include="cc\" />
+    <Folder Include="Images\" />
+    <Folder Include="Models\" />
+    <Folder Include="obj\Debug\TempPE\" />
+    <Folder Include="obj\Release\ProfileTransformWebConfig\transformed\" />
+    <Folder Include="obj\Release\TempPE\" />
+    <Folder Include="QRCodes\" />
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>18434</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>http://localhost:18434/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

@@ -1,0 +1,78 @@
+/* SeaTrack Custom Styles */
+
+body {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+    background-color: #f8f9fa;
+}
+
+.navbar-brand {
+    font-weight: bold;
+    font-size: 1.5rem;
+}
+
+.card {
+    border: none;
+    box-shadow: 0 2px 4px rgba(0,0,0,0.1);
+    margin-bottom: 20px;
+}
+
+.card-header {
+    font-weight: bold;
+    border-bottom: 2px solid rgba(0,0,0,0.1);
+}
+
+.btn {
+    border-radius: 5px;
+    padding: 8px 20px;
+    font-weight: 500;
+}
+
+.table {
+    background: white;
+}
+
+.badge {
+    padding: 5px 10px;
+    border-radius: 3px;
+}
+
+/* Status Colors */
+.status-created { background-color: #ffc107; color: #000; }
+.status-scanned { background-color: #17a2b8; color: #fff; }
+.status-in-transit { background-color: #007bff; color: #fff; }
+.status-delivered { background-color: #28a745; color: #fff; }
+
+/* Dashboard Cards */
+.dashboard-card {
+    transition: transform 0.2s;
+}
+
+.dashboard-card:hover {
+    transform: translateY(-5px);
+}
+
+/* Footer */
+footer {
+    margin-top: 50px;
+}
+
+/* RTL Support */
+[dir="rtl"] .float-end {
+    float: left !important;
+}
+
+[dir="rtl"] .float-start {
+    float: right !important;
+}
+
+/* Print Styles */
+@media print {
+    .navbar, footer, .btn, .no-print {
+        display: none !important;
+    }
+    
+    .card {
+        box-shadow: none;
+        border: 1px solid #ddd;
+    }
+}
