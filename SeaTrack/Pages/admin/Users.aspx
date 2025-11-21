@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Users.aspx.cs" Inherits="SeaTrack.Pages.admin.Users" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/admin/Admin.Master" AutoEventWireup="true" CodeBehind="Users.aspx.cs" Inherits="SeaTrack.Pages.admin.Users" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container mt-4">
         <h2><i class="fas fa-users"></i> إدارة المستخدمين</h2>

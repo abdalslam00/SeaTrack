@@ -90,7 +90,7 @@ namespace SeaTrack.DAL
         public static bool ApproveBooking(int bookingId, int tripContainerId)
         {
             string query = @"UPDATE BookingRequests 
-                           SET status = 2,
+                           SET status_id= 2,
                                trip_container_id = @tripContainerId,
                                updated_at = GETDATE()
                            WHERE booking_id = @bookingId";
@@ -142,13 +142,13 @@ namespace SeaTrack.DAL
            t.trip_code,
            ct.type_name AS container_type_name, 
            b.created_at as booking_date,
-           b.status as status_id, 
+           b.status_id as status_id, 
            bs.status_name
     FROM BookingRequests b
     INNER JOIN Trips t ON b.trip_id = t.trip_id
     -- تأكد من وجود جدول لربط نوع الحاوية أو استخدم ShippingTypes
     LEFT JOIN ShippingTypes ct ON b.container_type = ct.type_id 
-    LEFT JOIN BookingStatuses bs ON b.status = bs.status_id
+    LEFT JOIN BookingStatuses bs ON b.status_id= bs.status_id
     WHERE b.customer_id = @user_id
     ORDER BY b.created_at DESC";
 
@@ -189,7 +189,7 @@ namespace SeaTrack.DAL
     INNER JOIN Trips t ON b.trip_id = t.trip_id
     INNER JOIN ContainerTypes st ON b.container_type = st.container_type_id -- أو ShippingTypes حسب تسميتك
     INNER JOIN ContainerSizes cs ON b.container_size = cs.size_id
-    WHERE b.status = 1 -- 1 يمثل حالة 'معلق'
+    WHERE b.status_id= 1 -- 1 يمثل حالة 'معلق'
     ORDER BY b.created_at DESC";
 
             return DatabaseHelper.ExecuteQuery(query);

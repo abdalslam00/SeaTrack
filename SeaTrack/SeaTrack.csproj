@@ -206,7 +206,6 @@
     <Content Include="Pages\admin\Ships.aspx" />
     <Content Include="Pages\admin\Trips.aspx" />
     <Content Include="Pages\admin\Users.aspx" />
-    <Content Include="Pages\admin\WebForm1.aspx" />
     <Content Include="Pages\customer\Booking.aspx" />
     <Content Include="Pages\customer\CreateShipment.aspx" />
     <Content Include="Pages\customer\Dashboard.aspx" />
@@ -261,6 +260,13 @@
     </Compile>
     <Compile Include="obj\Debug\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
     <Compile Include="obj\Release\.NETFramework,Version=v4.8.AssemblyAttributes.cs" />
+    <Compile Include="Pages\admin\Admin.Master.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Pages\admin\Admin.Master.designer.cs">
+      <DependentUpon>Admin.Master</DependentUpon>
+    </Compile>
     <Compile Include="Pages\admin\Containers.aspx.cs">
       <DependentUpon>Containers.aspx</DependentUpon>
       <SubType>ASPXCodeBehind</SubType>
@@ -316,13 +322,6 @@
     </Compile>
     <Compile Include="Pages\admin\Users.aspx.designer.cs">
       <DependentUpon>Users.aspx</DependentUpon>
-    </Compile>
-    <Compile Include="Pages\admin\WebForm1.aspx.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
-      <SubType>ASPXCodeBehind</SubType>
-    </Compile>
-    <Compile Include="Pages\admin\WebForm1.aspx.designer.cs">
-      <DependentUpon>WebForm1.aspx</DependentUpon>
     </Compile>
     <Compile Include="Pages\customer\Booking.aspx.cs">
       <DependentUpon>Booking.aspx</DependentUpon>
@@ -498,6 +497,7 @@
     <Content Include="obj\Release\TransformWebConfig\transformed\Web.config" />
     <None Include="packages.config" />
     <Content Include="Pages.rar" />
+    <Content Include="Pages\admin\Admin.Master" />
     <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
     <Content Include="Site.Master" />
     <None Include="Web.Debug.config">

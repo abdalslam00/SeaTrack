@@ -1,4 +1,4 @@
-﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeBehind="Ships.aspx.cs" Inherits="SeaTrack.Pages.admin.Ships" %>
+﻿<%@ Page Title="" Language="C#" MasterPageFile="~/Pages/admin/Admin.Master" AutoEventWireup="true" CodeBehind="Ships.aspx.cs" Inherits="SeaTrack.Pages.admin.Ships" %>
 <asp:Content ID="Content1" ContentPlaceHolderID="MainContent" runat="server">
     <div class="container mt-4">
         <h2><i class="fas fa-anchor"></i> إدارة البواخر</h2>

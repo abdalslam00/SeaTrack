@@ -7,11 +7,14 @@ using System.Web.UI.WebControls;
 
 namespace SeaTrack.Pages.admin
 {
-    public partial class WebForm1 : System.Web.UI.Page
+    public partial class Admin : System.Web.UI.MasterPage
     {
         protected void Page_Load(object sender, EventArgs e)
         {
 
+        }
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
         }
     }
 }

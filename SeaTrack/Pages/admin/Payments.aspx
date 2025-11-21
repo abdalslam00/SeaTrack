@@ -1,4 +1,4 @@
-<%@ Page Title="إدارة المدفوعات" Language="C#" MasterPageFile="~/Site.Master" AutoEventWireup="true" CodeFile="Payments.aspx.cs" Inherits="Pages_Admin_Payments" %>
+﻿<%@ Page Title="إدارة المدفوعات" Language="C#" MasterPageFile="~/Pages/admin/Admin.Master" AutoEventWireup="true" CodeBehind="Payments.aspx.cs" Inherits="SeaTrack.Pages.admin.Payments" %>
 
 <asp:Content ID="Content1" ContentPlaceHolderID="head" runat="server">
     <style>
@@ -246,3 +246,4 @@
         <asp:Label ID="lblMessage" runat="server" ForeColor="Green" Font-Bold="true" />
     </div>
 </asp:Content>
+

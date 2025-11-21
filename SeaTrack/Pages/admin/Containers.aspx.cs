@@ -96,7 +96,10 @@ namespace SeaTrack.Pages.admin
             ClearForm();
             EditContainerId = null;
         }
-
+        protected void btnLogout_Click(object sender, EventArgs e)
+        {
+            
+        }
         protected void gvContainers_RowCommand(object sender, GridViewCommandEventArgs e)
         {
             int containerId = Convert.ToInt32(e.CommandArgument);
