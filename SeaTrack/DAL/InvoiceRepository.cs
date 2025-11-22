@@ -55,7 +55,7 @@ namespace SeaTrack.DAL
         /// <summary>
         /// إنشاء فاتورة جديدة
         /// </summary>
-        public static int CreateInvoice(string invoiceCode, int customerId, decimal amount, int statusId, int? shipmentId = null, string notes = null)
+        public static int CreateInvoice(string invoicCode, int customerId, decimal amount, int statusId, int? shipmentId = null, string notes = null)
         {
             string query = @"INSERT INTO Invoices 
                      (customer_id, invoice_code, total_amount, status_id, shipment_id, notes, created_at)
