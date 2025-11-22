@@ -14,8 +14,7 @@ namespace SeaTrack.DAL
                                               int containerSizeId, decimal expectedWeightKg,
                                               string cargoType, string notes)
         {
-            // ملاحظة: قمنا بتسمية المتغيرات Id لتدل على أنها مفاتيح أجنبية
-            // الحالة (status) تم تعيينها افتراضياً إلى 1 (قيد الانتظار)
+
             string query = @"INSERT INTO BookingRequests 
                     (customer_id, trip_id, container_type, container_size, 
                      expected_weight_kg, cargo_type, notes, status, created_at)

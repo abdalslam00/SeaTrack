@@ -78,7 +78,32 @@ namespace SeaTrack.DAL
             return DatabaseHelper.ExecuteQuery(query, parameters);
         }
 
+        public static bool UpdateTripFull(int tripId, string tripCode, int shipId, int depPortId, int arrPortId, DateTime depDate, DateTime arrDate, int statusId)
+        {
+            string query = @"UPDATE Trips SET 
+                    trip_code = @tripCode,
+                    ship_id = @shipId,
+                    departure_port_id = @depPortId,
+                    arrival_port_id = @arrPortId,
+                    departure_date = @depDate,
+                    expected_arrival_date = @arrDate,
+                    status_id = @statusId,
+                    updated_at = GETDATE()
+                    WHERE trip_id = @tripId";
 
+            SqlParameter[] parameters = {
+        new SqlParameter("@tripId", tripId),
+        new SqlParameter("@tripCode", tripCode),
+        new SqlParameter("@shipId", shipId),
+        new SqlParameter("@depPortId", depPortId),
+        new SqlParameter("@arrPortId", arrPortId),
+        new SqlParameter("@depDate", depDate),
+        new SqlParameter("@arrDate", arrDate),
+        new SqlParameter("@statusId", statusId)
+    };
+
+            return DatabaseHelper.ExecuteNonQuery(query, parameters) > 0;
+        }
 
         /// <summary>
         /// تحديث حالة الرحلة
@@ -264,12 +289,14 @@ namespace SeaTrack.DAL
 
         public static DataTable GetStatistics()
         {
+            // تم تصحيح اسم الجدول من bookings إلى BookingRequests
             string query = @"
             SELECT 
-                (SELECT COUNT(*) FROM trips) AS total_trips,
-                (SELECT COUNT(*) FROM shipments) AS total_shipments,
-                (SELECT COUNT(*) FROM users WHERE role_id = 2) AS total_customers,
-                (SELECT COUNT(*) FROM bookings WHERE status_id = 1) AS pending_bookings";
+                (SELECT COUNT(*) FROM Trips) AS total_trips,
+                (SELECT COUNT(*) FROM Shipments) AS total_shipments,
+                (SELECT COUNT(*) FROM Users WHERE role_id = 2) AS total_customers,
+                (SELECT COUNT(*) FROM BookingRequests WHERE status_id = 1) AS pending_bookings";
+
             return DatabaseHelper.ExecuteQuery(query);
         }
 
