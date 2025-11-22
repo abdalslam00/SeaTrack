@@ -296,7 +296,7 @@ namespace SeaTrack.DAL
                 (SELECT COUNT(*) FROM Shipments) AS total_shipments,
                 (SELECT COUNT(*) FROM Users WHERE role_id = 2) AS total_customers,
                 (SELECT COUNT(*) FROM BookingRequests WHERE status_id = 1) AS pending_bookings";
-
+            
             return DatabaseHelper.ExecuteQuery(query);
         }
 

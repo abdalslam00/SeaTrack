@@ -31,6 +31,21 @@
                                 </asp:LinkButton>
                             </ItemTemplate>
                         </asp:TemplateField>
+                        <asp:TemplateField HeaderText="إدارة الحالة">
+                            <ItemTemplate>
+                                <asp:Panel ID="pnlStatusActions" runat="server">
+                                    <asp:LinkButton ID="btnLoading" runat="server" CssClass="btn btn-sm btn-warning" CommandName="ChangeStatus" CommandArgument='<%# Eval("trip_id") + ",2" %>' Visible='<%# Eval("status_id").ToString() == "1" %>' ToolTip="بدء التحميل">
+                                        <i class="fas fa-truck-loading"></i> بدء التحميل
+                                    </asp:LinkButton>
+                                    <asp:LinkButton ID="btnDeparted" runat="server" CssClass="btn btn-sm btn-success" CommandName="ChangeStatus" CommandArgument='<%# Eval("trip_id") + ",3" %>' Visible='<%# Eval("status_id").ToString() == "2" %>' ToolTip="مغادرة">
+                                        <i class="fas fa-plane-departure"></i> مغادرة
+                                    </asp:LinkButton>
+                                    <asp:LinkButton ID="btnArrived" runat="server" CssClass="btn btn-sm btn-primary" CommandName="ChangeStatus" CommandArgument='<%# Eval("trip_id") + ",4" %>' Visible='<%# Eval("status_id").ToString() == "3" %>' ToolTip="وصول">
+                                        <i class="fas fa-anchor"></i> وصول
+                                    </asp:LinkButton>
+                                </asp:Panel>
+                            </ItemTemplate>
+                        </asp:TemplateField>
                     </Columns>
                     <EmptyDataTemplate>
                         <div class="text-center text-muted p-4">
@@ -43,3 +58,4 @@
         </div>
     </div>
 </asp:Content>
+

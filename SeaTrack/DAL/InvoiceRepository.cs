@@ -55,27 +55,26 @@ namespace SeaTrack.DAL
         /// <summary>
         /// إنشاء فاتورة جديدة
         /// </summary>
-        public static int CreateInvoice(int customerId, string invoiceNumber, decimal totalAmount, 
-                                        int statusId, string notes = null)
+        public static int CreateInvoice(string invoiceCode, int customerId, decimal amount, int statusId, int? shipmentId = null, string notes = null)
         {
             string query = @"INSERT INTO Invoices 
-                            (customer_id, invoice_number, total_amount, status_id, notes, created_at)
-                            VALUES 
-                            (@customer_id, @invoice_number, @total_amount, @status_id, @notes, GETDATE());
-                            SELECT SCOPE_IDENTITY();";
-            
+                     (customer_id, invoice_code, total_amount, status_id, shipment_id, notes, created_at)
+                     VALUES 
+                     (@customer_id, @invoice_code, @total_amount, @status_id, @shipment_id, @notes, GETDATE());
+                     SELECT SCOPE_IDENTITY();";
+
             SqlParameter[] parameters = {
-                new SqlParameter("@customer_id", customerId),
-                new SqlParameter("@invoice_number", invoiceNumber),
-                new SqlParameter("@total_amount", totalAmount),
-                new SqlParameter("@status_id", statusId),
-                new SqlParameter("@notes", notes ?? (object)DBNull.Value)
-            };
-            
+        new SqlParameter("@customer_id", customerId),
+        new SqlParameter("@invoice_code", invoiceCode),
+        new SqlParameter("@total_amount", amount),
+        new SqlParameter("@status_id", statusId),
+        new SqlParameter("@shipment_id", shipmentId ?? (object)DBNull.Value),
+        new SqlParameter("@notes", notes ?? (object)DBNull.Value)
+    };
+
             object result = DatabaseHelper.ExecuteScalar(query, parameters);
             return Convert.ToInt32(result);
         }
-
         /// <summary>
         /// تحديث حالة الفاتورة
         /// </summary>

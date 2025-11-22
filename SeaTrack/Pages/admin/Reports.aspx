@@ -41,7 +41,7 @@
                 </div>
             </div>
         </div>
-        <div class="card">
+        <div class="card mb-4">
             <div class="card-header bg-primary text-white">
                 <h5>الرحلات الأخيرة</h5>
             </div>
@@ -57,6 +57,37 @@
                 </asp:GridView>
             </div>
         </div>
+
+        <!-- متطلب: Admin - Final Delivery Confirmation -->
+        <div class="card">
+            <div class="card-header bg-success text-white">
+                <h5>تأكيد التسليم النهائي للشحنات الواصلة</h5>
+            </div>
+            <div class="card-body">
+                <asp:Label ID="lblDeliveryMessage" runat="server" CssClass="mb-3"></asp:Label>
+                <asp:GridView ID="gvArrivedShipments" runat="server" CssClass="table table-striped" AutoGenerateColumns="false" OnRowCommand="gvArrivedShipments_RowCommand">
+                    <Columns>
+                        <asp:BoundField DataField="shipment_code" HeaderText="رمز الشحنة" />
+                        <asp:BoundField DataField="customer_name" HeaderText="العميل" />
+                        <asp:BoundField DataField="arrival_country" HeaderText="بلد الوجهة" />
+                        <asp:BoundField DataField="arrival_city" HeaderText="مدينة الوجهة" />
+                        <asp:BoundField DataField="weight_kg" HeaderText="الوزن (كجم)" DataFormatString="{0:N2}" />
+                        <asp:TemplateField HeaderText="الإجراء">
+                            <ItemTemplate>
+                                <asp:LinkButton ID="btnConfirmDelivery" runat="server" CssClass="btn btn-sm btn-success" CommandName="ConfirmDelivery" CommandArgument='<%# Eval("shipment_id") %>'>
+                                    <i class="fas fa-check-circle"></i> تأكيد التسليم
+                                </asp:LinkButton>
+                            </ItemTemplate>
+                        </asp:TemplateField>
+                    </Columns>
+                    <EmptyDataTemplate>
+                        <div class="text-center text-muted p-4">
+                            <i class="fas fa-box-open fa-3x mb-3"></i>
+                            <p>لا توجد شحنات بانتظار تأكيد التسليم.</p>
+                        </div>
+                    </EmptyDataTemplate>
+                </asp:GridView>
+            </div>
+        </div>
     </div>
 </asp:Content>
-

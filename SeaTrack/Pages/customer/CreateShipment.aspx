@@ -10,15 +10,12 @@
             </div>
             <div class="card-body">
                 <div class="row">
-                    <div class="col-md-6 mb-3">
-                        <label>الحجز *</label>
-                        <asp:DropDownList ID="ddlBooking" runat="server" CssClass="form-select"></asp:DropDownList>
-                    </div>
+
                     <div class="col-md-6 mb-3">
                         <label>نوع الشحن *</label>
-                        <asp:DropDownList ID="ddlShippingType" runat="server" CssClass="form-select">
-                            <asp:ListItem Value="1" Text="شحن خاص"></asp:ListItem>
-                            <asp:ListItem Value="2" Text="شحن عام"></asp:ListItem>
+                        <asp:DropDownList ID="ddlShippingType" runat="server" CssClass="form-select" AutoPostBack="true" OnSelectedIndexChanged="ddlShippingType_SelectedIndexChanged">
+                            <asp:ListItem Value="1" Text="شحن خاص (حاوية خاصة)"></asp:ListItem>
+                            <asp:ListItem Value="2" Text="شحن عام (بضائع عامة)"></asp:ListItem>
                         </asp:DropDownList>
                     </div>
                     <div class="col-md-6 mb-3">
@@ -28,6 +25,26 @@
                     <div class="col-md-6 mb-3">
                         <label>الحجم (متر مكعب)</label>
                         <asp:TextBox ID="txtVolume" runat="server" TextMode="Number" step="0.01" CssClass="form-control"></asp:TextBox>
+                    </div>
+                    <asp:UpdatePanel ID="UpdatePanel1" runat="server">
+                        <ContentTemplate>
+                            <div class="col-md-6 mb-3" id="divBooking" runat="server">
+                                <label>الحجز *</label>
+                                <asp:DropDownList ID="ddlBooking" runat="server" CssClass="form-select"></asp:DropDownList>
+                            </div>
+                            <div class="col-md-6 mb-3" id="divDestinationCountry" runat="server" Visible="false">
+                                <label>بلد الوجهة *</label>
+                                <asp:TextBox ID="txtDestinationCountry" runat="server" CssClass="form-control"></asp:TextBox>
+                            </div>
+                            <div class="col-md-6 mb-3" id="divDestinationCity" runat="server" Visible="false">
+                                <label>مدينة الوجهة *</label>
+                                <asp:TextBox ID="txtDestinationCity" runat="server" CssClass="form-control"></asp:TextBox>
+                            </div>
+                        </ContentTemplate>
+                        <Triggers>
+                            <asp:AsyncPostBackTrigger ControlID="ddlShippingType" EventName="SelectedIndexChanged" />
+                        </Triggers>
+                    </asp:UpdatePanel>
                     </div>
                     <div class="col-12 mb-3">
                         <label>وصف البضاعة</label>
@@ -41,4 +58,3 @@
         </div>
     </div>
 </asp:Content>
-

@@ -11,7 +11,33 @@ namespace SeaTrack.Pages.customer
         protected void Page_Load(object sender, EventArgs e)
         {
             SessionManager.RequireRole(Constants.ROLE_CUSTOMER_NAME);
-            if (!IsPostBack) LoadBookings();
+            if (!IsPostBack)
+            {
+                LoadBookings();
+                // تعيين الحالة الأولية للواجهة
+                UpdateDynamicUI(ddlShippingType.SelectedValue);
+            }
+        }
+
+        protected void ddlShippingType_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            UpdateDynamicUI(ddlShippingType.SelectedValue);
+        }
+
+        private void UpdateDynamicUI(string selectedValue)
+        {
+            if (selectedValue == "1") // شحن خاص (Private Container)
+            {
+                divBooking.Visible = true;
+                divDestinationCountry.Visible = false;
+                divDestinationCity.Visible = false;
+            }
+            else if (selectedValue == "2") // شحن عام (General Shipping)
+            {
+                divBooking.Visible = false;
+                divDestinationCountry.Visible = true;
+                divDestinationCity.Visible = true;
+            }
         }
 
         private void LoadBookings()
@@ -46,12 +72,38 @@ namespace SeaTrack.Pages.customer
             int customerId = userIdNullable.Value;
 
             // --- الخطوة 2: جمع البيانات المتوفرة من النموذج ---
-            int bookingId = Convert.ToInt32(ddlBooking.SelectedValue);
             int shippingTypeId = Convert.ToInt32(ddlShippingType.SelectedValue);
             decimal weight = Convert.ToDecimal(txtWeight.Text);
             string description = txtDescription.Text.Trim();
 
-            // ملاحظة: النموذج لا يحتوي على الطول والعرض والارتفاع، لذا سنرسلها كـ null
+            // تهيئة المتغيرات بناءً على نوع الشحن
+            int? bookingId = null;
+            string arrivalCountry = null;
+            string arrivalCity = null;
+
+            if (shippingTypeId == 1) // شحن خاص (Private Container)
+            {
+                // التحقق من اختيار الحجز
+                if (ddlBooking.SelectedValue == "0")
+                {
+                    ShowMessage("الرجاء اختيار حجز للحاوية الخاصة.", "danger");
+                    return;
+                }
+                bookingId = Convert.ToInt32(ddlBooking.SelectedValue);
+                // الوجهة ستحدد لاحقاً من تفاصيل الرحلة المرتبطة بالحجز
+            }
+            else if (shippingTypeId == 2) // شحن عام (General Shipping)
+            {
+                // التحقق من إدخال الوجهة
+                if (string.IsNullOrWhiteSpace(txtDestinationCountry.Text) || string.IsNullOrWhiteSpace(txtDestinationCity.Text))
+                {
+                    ShowMessage("الرجاء إدخال بلد ومدينة الوجهة للشحن العام.", "danger");
+                    return;
+                }
+                arrivalCountry = txtDestinationCountry.Text.Trim();
+                arrivalCity = txtDestinationCity.Text.Trim();
+                // لا يوجد حجز مرتبط
+            }
 
             // --- الخطوة 3: توليد البيانات المطلوبة التي ليست في النموذج ---
             string uniqueCode = Guid.NewGuid().ToString("N"); // إنشاء كود فريد للشحنة
@@ -70,13 +122,38 @@ namespace SeaTrack.Pages.customer
                 shippingTypeId: shippingTypeId,
                 customerId: customerId, // حصلنا عليه من الـ Session
                 departureCountry: null, // يمكن تطويره لاحقاً
-                arrivalCountry: null,   // يمكن تطويره لاحقاً
+                arrivalCountry: arrivalCountry,   // الوجهة للشحن العام
                 bookingRequestId: bookingId
             );
 
             if (newShipmentId > 0)
             {
-                ShowMessage("تم إنشاء الشحنة بنجاح!", "success");
+                // --- الخطوة 5: توليد الفاتورة تلقائياً (متطلب: Financial Automation) ---
+                // منطق حساب السعر: الوزن * 10 USD
+                decimal pricePerKg = 10.00M;
+                decimal totalAmount = weight * pricePerKg;
+                string invoiceCode = $"INV-{shipmentCode}";
+
+                // استدعاء دالة إنشاء الفاتورة
+                // استدعاء دالة إنشاء الفاتورة
+                int newInvoiceId = InvoiceRepository.CreateInvoice(
+                    invoiceCode: invoiceCode,
+                    customerId: customerId,
+                    amount: totalAmount,
+                    statusId: 1, // 1 = Unpaid
+                    shipmentId: newShipmentId, // تأكد أنك طبقت تعديل shipmentId السابق
+                                               // دمجنا العملة وتاريخ الاستحقاق في الملاحظات لأن الأعمدة غير موجودة في الجدول
+                    notes: $"Currency: USD, Due Date: {DateTime.Now.AddDays(30):yyyy-MM-dd}"
+                );
+
+                if (newInvoiceId > 0)
+                {
+                    ShowMessage($"تم إنشاء الشحنة بنجاح! وتم توليد الفاتورة رقم {invoiceCode}.", "success");
+                }
+                else
+                {
+                    ShowMessage("تم إنشاء الشحنة بنجاح، ولكن فشل توليد الفاتورة تلقائياً.", "warning");
+                }
                 ClearForm();
             }
             else

@@ -23,6 +23,35 @@ namespace SeaTrack.Pages.warehouse
             DataTable trips = TripRepository.GetActiveTrips();
             gvTrips.DataSource = trips;
             gvTrips.DataBind();
+            gvTrips.RowCommand += gvTrips_RowCommand;
+        }
+
+        protected void gvTrips_RowCommand(object sender, GridViewCommandEventArgs e)
+        {
+            if (e.CommandName == "ChangeStatus")
+            {
+                try
+                {
+                    string[] args = e.CommandArgument.ToString().Split(',');
+                    int tripId = Convert.ToInt32(args[0]);
+                    int newStatusId = Convert.ToInt32(args[1]);
+
+                    // تطبيق منطق تغيير الحالة
+                    TripRepository.UpdateTripStatus(tripId, newStatusId);
+
+                    // إعادة تحميل البيانات بعد التحديث
+                    LoadTrips();
+
+                    // إظهار رسالة نجاح (يمكن استخدام Label أو ScriptManager)
+                    // حالياً، سنعتمد على إعادة تحميل الصفحة كإشارة للنجاح
+                }
+                catch (Exception ex)
+                {
+                    // تسجيل الخطأ وإظهار رسالة للمستخدم
+                    LogHelper.LogError( "Error changing trip status in Trips.aspx.cs", ex);
+                    // يمكنك إضافة رسالة خطأ للمستخدم هنا
+                }
+            }
         }
 
         protected string GetStatusClass(object statusId)

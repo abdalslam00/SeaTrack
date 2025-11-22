@@ -67,16 +67,30 @@ namespace SeaTrack.Pages.warehouse
             int tripContainerId = Convert.ToInt32(ddlContainers.SelectedValue);
             int userId = SessionManager.GetUserId().Value;
 
-            bool success = ShipmentRepository.AssignShipmentToContainer(shipmentId, tripContainerId, userId);
-            if (success)
+            try
             {
-                ShowMessage("تم مسح الشحنة بنجاح", "success");
-                txtQRCode.Text = "";
-                LoadScannedToday();
+                bool success = ShipmentRepository.AssignShipmentToContainer(shipmentId, tripContainerId, userId);
+                if (success)
+                {
+                    ShowMessage("تم مسح الشحنة بنجاح", "success");
+                    txtQRCode.Text = "";
+                    LoadScannedToday();
+                }
+                else
+                {
+                    ShowMessage("فشل مسح الشحنة", "danger");
+                }
             }
-            else
+            catch (System.Data.SqlClient.SqlException sqlEx) when (sqlEx.Number == 50000 && sqlEx.Message.Contains("Max Weight Exceeded"))
             {
-                ShowMessage("فشل مسح الشحنة", "danger");
+                // معالجة خطأ تجاوز الوزن المحدد في المتطلب
+                ShowMessage("عذراً، وزن الحاوية تجاوز الحد المسموح.", "danger");
+                LogHelper.LogActivity(userId.ToString(), $"Weight check failed for shipment {shipmentId} on container {tripContainerId}: Max Weight Exceeded.");
+            }
+            catch (Exception ex)
+            {
+                LogHelper.LogError("Error assigning shipment to container in ScanQR.aspx.cs", ex);
+                ShowMessage("حدث خطأ غير متوقع أثناء مسح الشحنة.", "danger");
             }
         }
 
@@ -95,5 +109,4 @@ namespace SeaTrack.Pages.warehouse
             pnlMessage.Controls.Add(new System.Web.UI.LiteralControl(message));
         }
     }
-
 }
